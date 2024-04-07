@@ -1,0 +1,12 @@
+.content {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  padding: 2rem 1rem 5rem;
+}
+
+@media (min-width: 768px) {
+  .content {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}

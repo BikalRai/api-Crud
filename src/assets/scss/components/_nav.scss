@@ -1,0 +1,22 @@
+.navbar {
+  background-color: $dark-gray;
+}
+
+.primary__nav {
+  padding: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  position: sticky;
+  top: 0;
+
+  a {
+    color: $white-gray;
+    font-size: 1rem;
+    font-weight: 400;
+
+    &.active {
+      font-weight: 700;
+    }
+  }
+}
