@@ -4,20 +4,24 @@ import axios from "axios";
 import Content from "./Content";
 import Card from "./Card";
 import Footer from "./Footer";
+import Pagination from "./Pagination";
 
 const Home = () => {
   const [data, setData] = useState([]);
-  const APIKey = "OqfCO9S2aPyEaJeXnsjfdkOfI9MaPoerMfVsOcp9iqawu06NpTpqDfm9";
+  const [page, setPage] = useState(1);
+  const [rowsPerPage, setRowsPerPage] = useState(12);
 
-  const getData = async () => {
+  // const APIKey = Your API Key here of pexels api;
+
+  const getData = async (page) => {
     try {
       const response = await axios.get(
-        "https://api.pexels.com/v1/curated?page=1&per_page=12",
-        {
-          headers: {
-            Authorization: APIKey,
-          },
-        }
+        `https://api.pexels.com/v1/curated?page=${page}&per_page=${rowsPerPage}`
+        // {
+        //   headers: {
+        //     Authorization: APIKey,
+        //   },
+        // }
       );
 
       setData(response.data.photos);
@@ -27,8 +31,8 @@ const Home = () => {
   };
 
   useEffect(() => {
-    getData();
-  }, []);
+    getData(page);
+  }, [page]);
 
   console.log(data);
   return (
@@ -40,6 +44,12 @@ const Home = () => {
           <Card img={info.src.medium} key={info.id} />
         ))}
       </Content>
+      <Pagination
+        page={page}
+        setPage={setPage}
+        rowsPerPage={rowsPerPage}
+        setrowsPerPage={setRowsPerPage}
+      />
       <Footer />
     </div>
   );

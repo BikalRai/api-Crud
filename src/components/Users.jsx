@@ -4,9 +4,12 @@ import { useEffect, useState } from "react";
 import User from "./User";
 import { Link } from "react-router-dom";
 import Footer from "./Footer";
+import Pagination from "./Pagination";
 
 const Users = () => {
   const [users, setUsers] = useState([]);
+  const [page, sePage] = useState(1);
+  const [rowsPerPage, setRowsPerPage] = useState(10);
 
   const usersStyles = {
     display: "flex",
@@ -73,10 +76,19 @@ const Users = () => {
             <th>Action</th>
           </tr>
         </thead>
-        {users.map((user) => (
-          <User key={user.id} user={user} handleDelete={handleDelete} />
-        ))}
+        {users
+          .slice(page * rowsPerPage - rowsPerPage, page * rowsPerPage)
+          .map((user) => (
+            <User key={user.id} user={user} handleDelete={handleDelete} />
+          ))}
       </table>
+      <Pagination
+        users={users}
+        setPage={sePage}
+        page={page}
+        setRowsPerPage={setRowsPerPage}
+        rowsPerPage={rowsPerPage}
+      />
       <Footer />
     </div>
   );
