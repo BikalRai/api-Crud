@@ -1,6 +1,25 @@
 import PropTypes from "prop-types";
+import { useNavigate } from "react-router-dom";
 
-const User = ({ user: { id, firstName, lastName, age, job } }) => {
+const User = ({
+  user: { id, firstName, lastName, age, job },
+  handleDelete,
+}) => {
+  const navigate = useNavigate();
+
+  const data = {
+    userId: id,
+    firstName,
+    lastName,
+    age,
+    job,
+  };
+
+  const handleEditUser = () => {
+    navigate("/edit", {
+      state: data,
+    });
+  };
   return (
     <tbody>
       <tr>
@@ -10,8 +29,12 @@ const User = ({ user: { id, firstName, lastName, age, job } }) => {
         <td>{age}</td>
         <td>{job}</td>
         <td>
-          <button className='edit'>Edit</button>
-          <button className='del'>Delete</button>
+          <button className='edit' onClick={handleEditUser}>
+            Edit
+          </button>
+          <button className='del' onClick={() => handleDelete(id)}>
+            Delete
+          </button>
         </td>
       </tr>
     </tbody>
@@ -20,6 +43,7 @@ const User = ({ user: { id, firstName, lastName, age, job } }) => {
 
 User.propTypes = {
   user: PropTypes.object,
+  handleDelete: PropTypes.func,
 };
 
 export default User;

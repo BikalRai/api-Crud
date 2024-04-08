@@ -12,57 +12,63 @@
       cursor: pointer;
     }
   }
+}
 
-  form {
-    padding: 2rem;
-    display: grid;
-    gap: 2rem;
+form {
+  padding: 2rem;
+  display: grid;
+  gap: 2rem;
 
-    border: 1px solid $black;
-    margin-bottom: 5rem;
+  border: 1px solid $black;
+  margin-bottom: 5rem;
 
-    div {
-      label {
-        display: block;
-        margin-bottom: 1rem;
+  div {
+    label {
+      display: block;
+      margin-bottom: 1rem;
+    }
+
+    input {
+      padding: 1rem;
+      width: 100%;
+      border: none;
+      outline: 1px solid $green;
+
+      &:focus {
+        outline: 5px solid $white-gray;
       }
 
-      input {
-        padding: 1rem;
-        width: 100%;
-        border: none;
-        outline: 1px solid $green;
+      &::-webkit-outer-spin-button,
+      &::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
 
-        &:focus {
-          outline: 5px solid $white-gray;
-        }
-
-        &::-webkit-outer-spin-button,
-        &::-webkit-inner-spin-button {
-          -webkit-appearance: none;
-          margin: 0;
-        }
-
-        &[type="number"] {
-          -moz-appearance: textfield;
-        }
+      &[type="number"] {
+        -moz-appearance: textfield;
       }
     }
 
-    button {
-      border: none;
-      padding: 1rem;
-      color: $white-gray;
-      background-color: $green;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.2rem;
-      cursor: pointer;
-      transition: 0.5s;
+    .error__msg {
+      padding-top: 1rem;
+      color: rgba(150, 10, 5, 1);
+      font-weight: 700;
+    }
+  }
 
-      &:hover {
-        background-color: $dark-gray;
-      }
+  button {
+    border: none;
+    padding: 1rem;
+    color: $white-gray;
+    background-color: $green;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.2rem;
+    cursor: pointer;
+    transition: 0.5s;
+
+    &:hover {
+      background-color: $dark-gray;
     }
   }
 }

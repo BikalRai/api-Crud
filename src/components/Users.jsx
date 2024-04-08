@@ -21,6 +21,21 @@ const Users = () => {
     setUsers(res.data);
   };
 
+  const handleDelete = async (id) => {
+    try {
+      const res = await axios.delete(
+        `https://661103100640280f219dedb8.mockapi.io/people/v1/users/${id}`
+      );
+      if (res) {
+        console.log(`Successfully deleted with id ${id}`);
+        // setUsers((prev) => prev.filter((user) => user.id !== id));
+        getUsers();
+      }
+    } catch (error) {
+      console.log("Could not delete", error);
+    }
+  };
+
   useEffect(() => {
     getUsers();
   }, []);
@@ -59,7 +74,7 @@ const Users = () => {
           </tr>
         </thead>
         {users.map((user) => (
-          <User key={user.id} user={user} />
+          <User key={user.id} user={user} handleDelete={handleDelete} />
         ))}
       </table>
       <Footer />
