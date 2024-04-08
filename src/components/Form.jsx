@@ -3,24 +3,10 @@ import { useState } from "react";
 import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
 
-// const initialState = {
-//   firstName: "",
-//   lastName: "",
-//   age: "",
-//   job: "",
-// };
-
 const Form = ({ data, handleInputs }) => {
-  //   const [user, setUser] = useState(initialState);
   const [error, setError] = useState(false);
   const { userId, firstName, lastName, age, job } = data;
   const navigate = useNavigate();
-
-  //   const handleInputs = (e) => {
-  //     const { name, value } = e.target;
-
-  //     setUser((prev) => ({ ...prev, [name]: value }));
-  //   };
 
   const handleUpdate = async (id) => {
     try {
